@@ -154,7 +154,7 @@ def manage_path(conn, path):
         return path, vol, pool
 
     dirname = os.path.dirname(path)
-    poolname = os.path.basename(dirname).replace(" ", "_")
+    poolname = dirname.lstrip("/").replace(" ", "_").replace("/", "_")
     if not poolname:
         poolname = "dirpool"
     poolname = StoragePool.find_free_name(conn, poolname)
